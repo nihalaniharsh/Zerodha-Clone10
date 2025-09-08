@@ -318,6 +318,17 @@ app.post('/newOrder', async(req, res) =>{
 });
 
 
+
+app.get("/allOrders", async (req, res) => {
+  try {
+    const orders = await OrdersModel.find({});
+    res.json(orders);
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching orders", error: err });
+  }
+});
+
+
 app.listen(PORT, () => {
     console.log("App started");
     mongoose.connect(uri);
